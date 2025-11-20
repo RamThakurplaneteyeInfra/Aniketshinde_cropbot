@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en-in">
+<head>
+    <meta charset="UTF-8">
+    <title>Cropbot AI Assistant</title>
+
+    <script src="/static/client.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif; 
+            background: linear-gradient(135deg, #e0f2f7 0%, #c8e6c9 100%); 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #333; 
+        }
+
+        #chat-container {
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            width: 95%; 
+            max-width: 500px;
+            height: clamp(65vh, 80vh, 900px); 
+            border-radius: 20px; 
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2); 
+            border: 1px solid rgba(0, 0, 0, 0.05); 
+        }
+
+        #chat-header {
+            background: linear-gradient(45deg, #1a73e8, #34a853); 
+            color: white;
+            padding: 18px 15px; 
+            text-align: center;
+            font-size: 1.25em; 
+            font-weight: 600; 
+        }
+
+        #chat-window {
+            flex-grow: 1;
+            padding: 15px;
+            overflow-y: auto;
+            border-bottom: 1px solid #eee;
+            background-color: #fcfcfc; 
+            background-image: url("/static/bgchatbot.png");
+            background-size: cover; 
+            background-repeat: no-repeat;
+            background-position: center bottom; 
+            opacity: 0.9; 
+        }
+
+        .message {
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+            max-width: 85%;
+        }
+        .user-message {
+            align-self: flex-end;
+            background-color: #dcf8c6; 
+            color: #222; 
+            padding: 10px 15px; 
+            border-radius: 18px 18px 0 18px;
+        }
+        .ai-message {
+            align-self: flex-start;
+            background-color: #f0f0f0; 
+            color: #333; 
+            padding: 10px 15px; 
+            border-radius: 18px 18px 18px 0;
+            white-space: pre-wrap;
+        }
+
+        #input-area {
+            display: flex;
+            padding: 10px;
+            background-color: #fff;
+            border-top: 1px solid #eee;
+            align-items: center;
+        }
+
+        #user-input {
+            flex-grow: 1;
+            padding: 12px 15px;
+            border: 1px solid #ccc;
+            border-radius: 25px;
+            font-size: 1em;
+            margin-right: 8px;
+        }
+
+        .control-button {
+            border: none;
+            cursor: pointer;
+            padding: 12px;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        #send-button {
+            background-color: #1a73e8;
+            color: white;
+        }
+        #mic-button {
+            background-color: #34a853;
+            color: white;
+            margin-left: 8px;
+        }
+
+        #status-display {
+            position: absolute;
+            top: 65px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 5px 15px;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #1a73e8;
+            font-size: 0.9em;
+            border-radius: 20px;
+            display: none;
+        }
+
+        #ai-sticker-container {
+            display: none;
+            text-align: center; 
+            padding: 5px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #ai-sticker {
+            width: 100px;
+            height: 100px;
+        }
+        
+        .pulsating-mic {
+            animation: pulse-green 1.5s infinite;
+        }
+        @keyframes pulse-green {
+            0% { box-shadow: 0 0 0 0 rgba(52, 168, 83, 0.7); }
+            70% { box-shadow: 0 0 0 12px rgba(52, 168, 83, 0); } 
+            100% { box-shadow: 0 0 0 0 rgba(52, 168, 83, 0); }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="chat-container">
+
+        <div id="chat-header">
+            🗣️ Cropbot AI Assistant
+        </div>
+
+        <span id="status-display">🟢 तयार.</span>
+
+        <div id="ai-sticker-container">
+            <img id="ai-sticker" src="/static/ai_thinking.gif" alt="AI Thinking">
+        </div>
+
+        <div id="chat-window">
+            <div class="message ai-message">
+                Hello! I am Cropbot, your dedicated AI assistant from Cropeye.ai. You can type or speak your farming questions in Marathi, Hindi, or English.
+            </div>
+        </div>
+
+        <div id="input-area">
+            <button id="pause-button" class="control-button" disabled>⏸️</button>
+            <input type="text" id="user-input" placeholder="Type your farming question here...">
+            <button id="send-button" class="control-button">➤</button>
+            <button id="mic-button" class="control-button">🎤</button>
+        </div>
+
+    </div>
+<script src="/static/client.js"></script>
+</body>
+</html>
